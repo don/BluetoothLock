@@ -86,7 +86,7 @@ var app = {
         bluetoothSerial.write(command, success, failure); 
     },    
     onDeviceList: function(devices) {
-        var listItem, em;
+        var listItem, rssi;
 
         app.showDeviceListPage();
         
@@ -94,11 +94,12 @@ var app = {
             console.log(JSON.stringify(device));
             listItem = document.createElement('li');
             listItem.dataset.deviceId = device.id;
-            listItem.innerHTML = device.name + "<br/>";
-            em = document.createElement('em');
-            em.dataset.deviceId = device.id; // shouldn't need to duplicate
-            em.innerText = device.id;
-            listItem.appendChild(em);
+            if (device.rssi) {
+                rssi = "RSSI: " + device.rssi + "<br/>";
+            } else {
+                rssi = "";
+            }
+            listItem.innerHTML = device.name + "<br/>" + rssi + device.id;
             deviceList.appendChild(listItem);
         });
 

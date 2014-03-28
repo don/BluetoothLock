@@ -82,6 +82,9 @@ form {
 ul li { 
 	border-top: 1px solid black;
 	list-style-type: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 0.9em;    		
 }
 
 ul > li:last-child {
@@ -92,4 +95,5 @@ ul {
 	margin: 0px;
 	padding: 0px;
 	padding-bottom: 30px;
+	text-align: left;
 }
