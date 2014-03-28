@@ -33,7 +33,7 @@ The project from git contains only the Cordova code. The iOS platform and Blueto
   
 Plug in your iPhone.
 Choose the target device in Xcode.
-![](images/XcodeChoosePhone.png))
+![](images/XcodeChoosePhone.png)
 Build and deploy through Xcode.
 
 ### Making changes
