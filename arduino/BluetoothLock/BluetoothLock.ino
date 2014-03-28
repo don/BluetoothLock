@@ -19,6 +19,8 @@
 
 long secret = 12345;
 long openTime = 0;
+// Status from the Bluefruit LE driver
+int lastStatus = ACI_EVT_DISCONNECTED;
 
 Adafruit_BLE_UART BTLEserial = Adafruit_BLE_UART(ADAFRUITBLE_REQ, ADAFRUITBLE_RDY, ADAFRUITBLE_RST);
 
@@ -32,21 +34,17 @@ void setup() {
   pinMode(GREEN_LED_PIN, OUTPUT);  
   digitalWrite(LOCK_PIN, LOW);
   digitalWrite(RED_LED_PIN, LOW);
-  digitalWrite(GREEN_LED_PIN, LOW);
-  
+  digitalWrite(GREEN_LED_PIN, LOW); 
 }
-
-// Status from the Bluefruit LE driver
-aci_evt_opcode_t laststatus = ACI_EVT_DISCONNECTED;
 
 void loop() {
 
   // Tell the nRF8001 to do whatever it should be working on
   BTLEserial.pollACI();
 
-  aci_evt_opcode_t status = BTLEserial.getState();
+  int status = BTLEserial.getState();
       
-  if (status != laststatus) {
+  if (status != lastStatus) {
     if (status == ACI_EVT_DEVICE_STARTED) {
       Serial.println(F("* Advertising Started"));
     } 
@@ -57,14 +55,16 @@ void loop() {
       Serial.println(F("* Disconnected or advertising timed out."));
     } 
     // save for next loop
-    laststatus = status;
+    lastStatus = status;
   }
     
   if (status == ACI_EVT_CONNECTED) {
     
     // see if there's any data from bluetooth
     if (BTLEserial.available()) {
-      Serial.print("* "); Serial.print(BTLEserial.available()); Serial.println(F(" bytes available from BTLE"));
+      Serial.print("* ");
+      Serial.print(BTLEserial.available());
+      Serial.println(F(" bytes available from BTLE"));
     }
 
     // keeping u + code for compatibility with the serial api
@@ -85,15 +85,17 @@ void loop() {
 void openLock(int code) {
   openTime = millis();  // set even if bad code so we can reset the lights
   if (code == secret) { 
-      // open the lock
-      digitalWrite(GREEN_LED_PIN, HIGH); 
-      digitalWrite(RED_LED_PIN, LOW);     
-      digitalWrite(LOCK_PIN, HIGH); // open the lock
-      BTLEserial.println("unlocked");    
+    // open the lock
+    Serial.println("Code matches, opening lock");
+    digitalWrite(GREEN_LED_PIN, HIGH); 
+    digitalWrite(RED_LED_PIN, LOW);     
+    digitalWrite(LOCK_PIN, HIGH); // open the lock
+    BTLEserial.println("unlocked");    
   } else {
-      // bad code, don't open
-      digitalWrite(RED_LED_PIN, HIGH);
-      BTLEserial.println("invalid key code");       
+    // bad code, don't open
+    Serial.println("Invalid code " + code);
+    digitalWrite(RED_LED_PIN, HIGH);
+    BTLEserial.println("invalid code");       
   }
 }
 
