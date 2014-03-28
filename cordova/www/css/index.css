@@ -1,0 +1,95 @@
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    
+    font-family: "Helvetica Neue";
+    font-weight: lighter;
+    
+    text-align: center;
+}
+
+#unlockScreen {
+    margin-top: 40px; /* iOS */
+    text-align: center;
+}
+
+#connectionScreen {
+}
+
+input { 
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+input[type=tel] {
+    width: 90%; /* kludge */    
+    font-size: 0.8em;    
+}
+
+/* webkit appearance is important for iOS */
+input[type=submit] {
+    -webkit-appearance: none;
+    font-size: 0.8em;
+    border-radius: 0;
+}
+
+button {
+    -webkit-appearance: none;
+    font-size: 1.5em;
+    border-radius: 0;
+}
+
+form {
+    margin: 30px;
+    font-size: 2em;    
+}
+
+#statusDiv {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+#scrim {
+    position:absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color:rgba(128,128,160,0.5);
+    z-index: 15;    
+}
+
+#scrim p {
+    font-size: 1.5em;
+    margin-top: 80%;    
+    -webkit-animation: pulsate 2s ease-in-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 1.0
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+}
+
+@-webkit-keyframes pulsate {
+    0% {opacity: 1.0;}
+    50% {opacity: 0.4;}
+    100% {opacity: 1.0;}
+}
+
+ul li { 
+	border-top: 1px solid black;
+	list-style-type: none;
+}
+
+ul > li:last-child {
+	border-bottom: 1px solid black;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+	padding-bottom: 30px;
+}

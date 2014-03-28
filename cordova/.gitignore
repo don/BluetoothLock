@@ -1,0 +1,12 @@
+platforms/ios
+platforms/android
+plugins
+
+.DS_Store
+local.properties
+
+*.xcworkspace
+xcuserdata
+build/*
+.staging
+
