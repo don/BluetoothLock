@@ -18,6 +18,8 @@ Install NodeJS with `brew install` or download from http://nodejs.org.
 Install Cordova using NPM, which comes with NodeJS.
 
     $ npm install -g cordova
+    
+See the [Cordova Documentation](http://docs.phonegap.com/en/3.4.0/guide_platforms_ios_index.md.html#iOS%20Platform%20Guide) for more information.
   
 ### Building
 
