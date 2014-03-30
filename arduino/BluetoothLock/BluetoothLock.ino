@@ -1,4 +1,5 @@
 // Bluetooth Low Energy Lock
+// (c) 2014 Don Coleman
 // 
 // Bluefruit LE http://adafru.it/1697
 // Solenoid Lock http://adafru.it/1512

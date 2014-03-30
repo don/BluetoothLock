@@ -1,5 +1,7 @@
 /*global cordova, bluetoothSerial, deviceListScreen, unlockScreen, scrim, statusDiv, deviceList, refreshButton, disconnectButton*/
 
+// Bluetooth Low Energy Lock (c) 2014 Don Coleman
+
 var app = {
     // Application Constructor
     initialize: function() {
